@@ -22,19 +22,23 @@ The main program should first read the name of the input file, and enter a loop,
 following menu being displayed: 
 
 - Call lex()
+  
 - Show symbol table
+  
 - Exit
+  
 "Exit" should end the program. 
+
 "Call lex()" should call the lexical analyzer to get the next token, as well as additional 
 information. In case of
 
- An identifier, a pointer to the symbol table (index into the symbol table) should be
+o An identifier, a pointer to the symbol table (index into the symbol table) should be
 returned as the extra information. Identifiers should be placed by lex() in the symbol
 table the first time they are encountered.
 
- An integer, the actual value of the integer should be returned as the extra information
+o An integer, the actual value of the integer should be returned as the extra information
 
- A floating point number, the actual value of the number should be returned as the extra
+o A floating point number, the actual value of the number should be returned as the extra
 information
 
 The “show symbol table” option should print the contents of the symbol table on the screen. 
@@ -42,17 +46,28 @@ The “show symbol table” option should print the contents of the symbol table
 Spaces should be skipped in the input file. 
  The TOKENS that should be returned by the lexical analyzer are: 
  
- INTEGER
- FLOAT
- ID
- BITWISE_OR (for |)
- LOGICAL_OR (for ||)
- BITWISE_AND (for &)
- LOGICAL_AND (for &&)
- FOR
- WHILE
- IF
- ELSE
+o INTEGER
+
+o FLOAT
+
+o ID
+
+o BITWISE_OR (for |)
+
+o LOGICAL_OR (for ||)
+
+o BITWISE_AND (for &)
+
+o LOGICAL_AND (for &&)
+
+o FOR
+
+o WHILE
+
+o IF
+
+o ELSE
+
 Define TOKENS as enumerations. 
 
 Initialize your symbol table with the reserved words “for”, “while”, “if”, “else”, so that 
@@ -87,7 +102,7 @@ Hint: define a class for the return type of lex() that can hold different kinds 
 as LEX_RESULT. 
 
 What to hand in on Teams
- A report (pdf document). If your program does not work 100%, still write a report showing
+o A report (pdf document). If your program does not work 100%, still write a report showing
 the parts that do work. The report should contain
 
 o the names of both partners (unless the project was done by a single student)
@@ -101,4 +116,4 @@ o the input text file
 
 o commented source code, where you explain what each function / method does.
 
- Source code (a separate file of Python code)
+o Source code (a separate file of Python code)
