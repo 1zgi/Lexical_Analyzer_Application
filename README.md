@@ -46,27 +46,27 @@ The “show symbol table” option should print the contents of the symbol table
 Spaces should be skipped in the input file. 
  The TOKENS that should be returned by the lexical analyzer are: 
  
-o INTEGER
+- INTEGER
 
-o FLOAT
+- FLOAT
 
-o ID
+- ID
 
-o BITWISE_OR (for |)
+- BITWISE_OR (for |)
 
-o LOGICAL_OR (for ||)
+- LOGICAL_OR (for ||)
 
-o BITWISE_AND (for &)
+- BITWISE_AND (for &)
 
-o LOGICAL_AND (for &&)
+- LOGICAL_AND (for &&)
 
-o FOR
+- FOR
 
-o WHILE
+- WHILE
 
-o IF
+- IF
 
-o ELSE
+- ELSE
 
 Define TOKENS as enumerations. 
 
@@ -102,7 +102,7 @@ Hint: define a class for the return type of lex() that can hold different kinds 
 as LEX_RESULT. 
 
 What to hand in on Teams
-o A report (pdf document). If your program does not work 100%, still write a report showing
+- A report (pdf document). If your program does not work 100%, still write a report showing
 the parts that do work. The report should contain
 
 o the names of both partners (unless the project was done by a single student)
@@ -116,4 +116,4 @@ o the input text file
 
 o commented source code, where you explain what each function / method does.
 
-o Source code (a separate file of Python code)
+- Source code (a separate file of Python code)
