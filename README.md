@@ -32,13 +32,13 @@ following menu being displayed:
 "Call lex()" should call the lexical analyzer to get the next token, as well as additional 
 information. In case of
 
-o An identifier, a pointer to the symbol table (index into the symbol table) should be
+- An identifier, a pointer to the symbol table (index into the symbol table) should be
 returned as the extra information. Identifiers should be placed by lex() in the symbol
 table the first time they are encountered.
 
-o An integer, the actual value of the integer should be returned as the extra information
+- An integer, the actual value of the integer should be returned as the extra information
 
-o A floating point number, the actual value of the number should be returned as the extra
+- A floating point number, the actual value of the number should be returned as the extra
 information
 
 The “show symbol table” option should print the contents of the symbol table on the screen. 
