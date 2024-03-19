@@ -1,7 +1,6 @@
-import re
-from enum import Enum
+import regex as re
 
-class Token(Enum):
+class Token:
 
     INTEGER = 1
     FLOAT = 2
@@ -24,7 +23,8 @@ RESERVED_WORDS = {
 }
 symbol_table = RESERVED_WORDS.copy()
 next_id = len(RESERVED_WORDS) + 1
-    TOKEN_PATTERNS = [
+
+    TOKEN_List = [
         (Token.INTEGER, r'\d+'),  # Matches integers
         (Token.FLOAT, r'\d+\.\d+'),  # Matches floating-point numbers
         (Token.BITWISE_OR, r'\|'),  # Matches bitwise OR
@@ -63,6 +63,8 @@ next_id = len(RESERVED_WORDS) + 1
                     else:
                         # Throw Error
                          break
+                elif re.match(Token.ID,token): # checking...Is it identifier ?
+                    items.append(("identifier",token))
 
     def parse(file): # reads the file and returns the string
         contents: str = open(file,"r").read()
