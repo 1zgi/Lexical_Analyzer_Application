@@ -1,4 +1,3 @@
-from sys import *
 from Token import *
 from LexerResult import *
 
@@ -20,6 +19,7 @@ for i, token in enumerate(tokens):
         print()  # symbol_table
     elif chosen_option == "1":
         result = lex.lexer(tokens)
-        print(result)
+        for obj in result:
+            print(obj)
     else:
         print("ERROR: invalid option!")
