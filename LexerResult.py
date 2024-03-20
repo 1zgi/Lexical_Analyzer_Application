@@ -68,12 +68,30 @@ class LexerResult:
                     items.append(("ID", token))
             elif token in "+-*/+":  # a+1 => gives Error
                 items.append(("EXPRESSION", token))
-                # self.check_expression(token)
             elif re.match(r"[.0-9]+", token):  # checking...Is it number ?
                 var_type, var_value = self.is_int_float(token)
                 if var_type:
                     items.append((var_type, var_value))
             else:
                 items.append(("ERROR", token))
+        return self.create_obj(items)
 
-        return items
+    def create_obj(self, items):
+        index = 0
+        objects = []
+        while index < len(items):
+            current_item = items[index]
+            if current_item[0] == "INTEGER":
+                obj = LexerResult(token=current_item[0], integer_value=current_item[1])
+            elif current_item[0] == "FLOAT":
+                obj = LexerResult(token=current_item[0], float_value=current_item[1])
+            elif current_item[0] == "ID":
+                obj = LexerResult(token=current_item[0], index=current_item[1])
+            elif current_item[0] == "ERROR":
+                obj = LexerResult(token=current_item[0], unrecognized_string=current_item[1])
+            else:
+                obj = LexerResult(token=current_item[0])
+
+            objects.append(obj)
+            index += 1  # Move to the next item
+        return objects
