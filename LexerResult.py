@@ -1,4 +1,4 @@
-import regex as re
+import re
 
 KEYWORDS = {"for": "FOR",
             "while": "WHILE",
@@ -11,7 +11,7 @@ KEYWORDS = {"for": "FOR",
 
 
 class LexerResult:
-    def __init__(self, token, integer_value=None, float_value=None, index=None, unrecognized_string=None):
+    def __init__(self, token=None, integer_value=None, float_value=None, index=None, unrecognized_string=None):
 
         self.token = token
         self.integer_value = integer_value
@@ -32,7 +32,26 @@ class LexerResult:
             return "<token={}>".format(self.token)
 
     @staticmethod
-    def lexer(tokens):  # splits the contents into tokens
+    def is_int_float(number):
+        try:
+            number = int(number)
+            return "INTEGER", number
+        except ValueError:
+            try:
+                number = float(number)
+                return "FLOAT", number
+            except ValueError:
+                return None, None
+
+    @staticmethod
+    def check_identifier(token):
+        return KEYWORDS.get(token)
+
+    def lexer(self, tokens):  # splits the contents into tokens
+        lex_result = self.analyzer(tokens)
+        return lex_result
+
+    def analyzer(self, tokens):
         items = []  # token list
         for token in tokens:
             if token[0] == '"' or token[0] == "'":  # checking...Is it string ?
@@ -41,10 +60,20 @@ class LexerResult:
                 else:
                     # Throw Error
                     break
-            elif re.match("ID", token):  # checking...Is it identifier ?
-                items.append(("identifier", token))
-            elif token in r"[+-*/]+":  # a+1 => gives Error
-                items.append(("expression", token))
+            elif re.match(r"[a-zA-Z_][a-zA-Z0-9_]*$", token):  # checking...Is it identifier ?
+                idx = self.check_identifier(token)
+                if idx:
+                    items.append(("ID", idx))
+                else:
+                    items.append(("ID", token))
+            elif token in "+-*/+":  # a+1 => gives Error
+                items.append(("EXPRESSION", token))
+                # self.check_expression(token)
             elif re.match(r"[.0-9]+", token):  # checking...Is it number ?
-                items.append(("number", token))
+                var_type, var_value = self.is_int_float(token)
+                if var_type:
+                    items.append((var_type, var_value))
+            else:
+                items.append(("ERROR", token))
+
         return items
