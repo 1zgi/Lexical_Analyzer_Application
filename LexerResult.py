@@ -78,7 +78,7 @@ class LexerResult:
                     items.append(("ID", idx))
                 else:
                     items.append(("ID", token))
-            elif token in "| || & &&":  # a+1 => gives Error
+            elif token in "| || & &&":
                 op_type, op_value = self.check_op(token)
                 items.append((op_type, op_value))
             elif re.match(r"[-.0-9]+", token):  # checking...Is it number ?
