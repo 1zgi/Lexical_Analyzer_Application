@@ -3,9 +3,10 @@ from Token import *
 from LexerResult import *
 
 token = Token
-lex = LexerResult
 
-tokens = token.parse(Token, "file.txt")
+
+tokens = token.parse("file.txt")
+lex = LexerResult(tokens)
 
 print("1. Call lex()")
 print("2. Show symbol table")
