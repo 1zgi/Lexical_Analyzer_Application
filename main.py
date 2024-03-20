@@ -2,8 +2,6 @@ from Token import *
 from LexerResult import *
 
 token = Token
-
-
 tokens = token.parse("file.txt")
 lex = LexerResult(tokens)
 
