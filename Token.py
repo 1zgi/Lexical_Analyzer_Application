@@ -32,7 +32,3 @@ class Token:
         tokens = Token.tokenize(contents)
         return tokens
 
-# String " " or ' '
-# Symbol ex: print function var
-# Expression +-/*
-# Number 0-9
