@@ -47,6 +47,18 @@ class LexerResult:
     def check_identifier(token):
         return KEYWORDS.get(token)
 
+    def check_op(self, token):
+        if token == "|":
+            return "BITWISE_OR", token
+        elif token == "||":
+            return "LOGICAL_OR", token
+        elif token == "&":
+            return "BITWISE_AND", token
+        elif token == "&&":
+            return "LOGICAL_AND", token
+        else:
+            pass
+
     def lexer(self, tokens):  # splits the contents into tokens
         lex_result = self.analyzer(tokens)
         return lex_result
@@ -60,15 +72,16 @@ class LexerResult:
                 else:
                     # Throw Error
                     break
-            elif re.match(r"[a-zA-Z_][a-zA-Z0-9_]*$", token):  # checking...Is it identifier ?
+            elif re.match(r"[a-zA-Z_]*$", token):  # checking...Is it identifier ?
                 idx = self.check_identifier(token)
                 if idx:
                     items.append(("ID", idx))
                 else:
                     items.append(("ID", token))
-            elif token in "+-*/+":  # a+1 => gives Error
-                items.append(("EXPRESSION", token))
-            elif re.match(r"[.0-9]+", token):  # checking...Is it number ?
+            elif token in "| || & &&":  # a+1 => gives Error
+                op_type, op_value = self.check_op(token)
+                items.append((op_type, op_value))
+            elif re.match(r"[-.0-9]+", token):  # checking...Is it number ?
                 var_type, var_value = self.is_int_float(token)
                 if var_type:
                     items.append((var_type, var_value))
