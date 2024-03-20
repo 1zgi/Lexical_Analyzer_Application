@@ -1,8 +1,7 @@
-
 class Token:
 
     @staticmethod
-    def tokenized(contents):
+    def tokenize(contents):
         lines = contents.split("\n")
         tokens = []
         for line in lines:
@@ -18,17 +17,19 @@ class Token:
                 else:
                     in_quotes = True
 
-                if char == " " and in_quotes == False:
+                if char == " " and not in_quotes:
                     tokens.append(temp_str)
                     temp_str = ""
                 else:
                     temp_str += char
             tokens.append(temp_str)
+            print(tokens)
         return tokens
 
-    def parse(self, file):  # reads the file and returns the string
+    @staticmethod
+    def parse(file):  # reads the file and returns the string
         contents: str = open(file, "r").read()
-        tokens = self.tokenized(contents)
+        tokens = Token.tokenize(contents)
         return tokens
 
 # String " " or ' '
