@@ -1,4 +1,5 @@
 import re
+from SymbolTable import *
 
 KEYWORDS = {"for": "FOR",
             "while": "WHILE",
@@ -8,6 +9,8 @@ KEYWORDS = {"for": "FOR",
             "||": "LOGICAL_OR",
             "&": "BITWISE_AND",
             "&&": "LOGICAL_AND"}
+
+symbol_table = SymbolTable()
 
 
 class LexerResult:
@@ -81,10 +84,12 @@ class LexerResult:
             elif token in "| || & &&":
                 op_type, op_value = self.check_op(token)
                 items.append((op_type, op_value))
+                symbol_table.add(op_type)
             elif re.match(r"[-.0-9]+", token):  # checking...Is it number ?
                 var_type, var_value = self.is_int_float(token)
                 if var_type:
                     items.append((var_type, var_value))
+                    symbol_table.add(var_type)
             else:
                 items.append(("ERROR", token))
         return self.create_obj(items)
