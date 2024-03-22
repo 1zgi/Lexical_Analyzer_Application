@@ -1,16 +1,23 @@
-# This is a sample Python script.
+from Token import *
+from LexerResult import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+token = Token
+tokens = token.parse("file.txt")
+lex = LexerResult(tokens)
 
+print("1. Call lex()")
+print("2. Show symbol table")
+print("3. Exit")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+for i, token in enumerate(tokens):
+    chosen_option = input("Choose one option:")
+    if chosen_option == "3":
+        break
+    elif chosen_option == "2":
+        print()  # symbol_table
+    elif chosen_option == "1":
+        result = lex.lexer(tokens)
+        for obj in result:
+            print(obj)
+    else:
+        print("ERROR: invalid option!")
