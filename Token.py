@@ -23,7 +23,6 @@ class Token:
                 else:
                     temp_str += char
             tokens.append(temp_str)
-            print(tokens)
         return tokens
 
     @staticmethod
