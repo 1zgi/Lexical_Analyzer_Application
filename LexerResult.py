@@ -62,7 +62,7 @@ class LexerResult:
         else:
             pass
 
-    def lexer(self, tokens):  # splits the contents into tokens
+    def lexer(self, tokens):
         lex_result = self.analyzer(tokens)
         return lex_result
 
