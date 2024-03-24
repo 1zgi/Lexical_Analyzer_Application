@@ -2,7 +2,7 @@ class Token:
 
     @staticmethod
     def tokenize(contents):
-        lines = contents.split("\n")
+        lines = contents.split("\n") # splits the contents into tokens
         tokens = []
         for line in lines:
             chars = list(line)  # list function puts every character inside a line an array
